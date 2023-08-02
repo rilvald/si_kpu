@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:si_kpu/src/view/blocs/cubit/dark_mode_cubit.dart';
 
 import 'regulasi_screen.dart';
 import 'cek_dpt_online_screen.dart';
@@ -13,6 +14,8 @@ import 'informasi_pengembang_screen.dart';
 import 'odp_team_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({super.key});
+
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
 }
@@ -22,52 +25,54 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SI KPU Dashboard'),
+        title: const Text('SI KPU Dashboard'),
       ),
       body: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Switch(
-                value: Theme.of(context).brightness == Brightness.dark,
-                onChanged: (value) async {
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  prefs.setBool('darkMode', value);
+              BlocBuilder<DarkModeCubit, bool>(
+                builder: (context, state) {
+                  return Switch(
+                    value: state,
+                    onChanged: (value) async {
+                      context.read<DarkModeCubit>().changeMode(value);
+                    },
+                  );
                 },
               ),
-              Text('Mode Gelap'),
-              SizedBox(width: 16),
+              const Text('Mode Gelap'),
+              const SizedBox(width: 16),
             ],
           ),
           Expanded(
             child: GridView.count(
               crossAxisCount: 2,
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               mainAxisSpacing: 16,
               crossAxisSpacing: 16,
               children: [
                 _buildMenuItem(
-                    context, 'DPT Garut', Icons.people, DptGarutScreen()),
+                    context, 'DPT Garut', Icons.people, const DptGarutScreen()),
                 _buildMenuItem(context, 'DPT Kecamatan', Icons.people_outline,
-                    DptKecamatanScreen()),
+                    const DptKecamatanScreen()),
                 _buildMenuItem(context, 'DPT Per Desa', Icons.location_city,
-                    DptDesaScreen()),
+                    const DptDesaScreen()),
                 _buildMenuItem(context, 'DPT Per Generasi', Icons.people_alt,
-                    DptGenerasiScreen()),
+                    const DptGenerasiScreen()),
                 _buildMenuItem(context, 'DPT Per Dapil', Icons.location_on,
-                    DptDapilScreen()),
+                    const DptDapilScreen()),
                 _buildMenuItem(context, 'Cek DPT Online', Icons.search,
-                    CekDptOnlineScreen()),
-                _buildMenuItem(
-                    context, 'Regulasi', Icons.description, RegulasiScreen()),
-                _buildMenuItem(
-                    context, 'DPT Per TPS', Icons.location_pin, DptTpsScreen()),
+                    const CekDptOnlineScreen()),
+                _buildMenuItem(context, 'Regulasi', Icons.description,
+                    const RegulasiScreen()),
+                _buildMenuItem(context, 'DPT Per TPS', Icons.location_pin,
+                    const DptTpsScreen()),
                 _buildMenuItem(context, 'Informasi Pengembang',
-                    Icons.developer_board, InformasiPengembangScreen()),
+                    Icons.developer_board, const InformasiPengembangScreen()),
                 _buildMenuItem(
-                    context, 'ODP Team', Icons.group, OdpTeamScreen()),
+                    context, 'ODP Team', Icons.group, const OdpTeamScreen()),
               ],
             ),
           ),
@@ -93,15 +98,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
           borderRadius: BorderRadius.circular(15),
         ),
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(icon, size: 60),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Text(
                 title,
-                style: TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 18),
                 textAlign: TextAlign.center,
               ),
             ],

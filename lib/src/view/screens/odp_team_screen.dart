@@ -1,39 +1,33 @@
 import 'package:flutter/material.dart';
 
-class InformasiPengembangScreen extends StatelessWidget {
+class OdpTeamScreen extends StatelessWidget {
+  const OdpTeamScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Informasi Pengembang'),
+        title: const Text('ODP Team'),
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircleAvatar(
-              radius: 80,
-              // Ganti sumber foto profil sesuai kebutuhan
-              backgroundImage: AssetImage('assets/images/dp.jpg'),
+            Text(
+              'Tim Pengembang Aplikasi',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
             Text(
-              'Moh Rival Dzulkhomzah',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'NPM: 2006114',
+              '1. Moh Rival Dzulkhomzah (NPM 2006114)',
               style: TextStyle(fontSize: 18),
             ),
-            SizedBox(height: 10),
             Text(
-              'Jurusan: Teknik Informatika',
+              '2. Nama Anggota 2 (NPM ...)',
               style: TextStyle(fontSize: 18),
             ),
-            SizedBox(height: 10),
             Text(
-              'Angkatan: 2020',
+              '3. Nama Anggota 3 (NPM ...)',
               style: TextStyle(fontSize: 18),
             ),
           ],

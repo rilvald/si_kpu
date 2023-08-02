@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class RegulasiScreen extends StatelessWidget {
+  const RegulasiScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Regulasi'),
+        title: const Text('Regulasi'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Halaman Regulasi'),
       ),
     );

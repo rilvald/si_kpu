@@ -1,31 +1,17 @@
 import 'package:flutter/material.dart';
+import '../../models/kecamatan.dart';
 import 'kecamatan_detail_screen.dart';
 
-class KecamatanDetail {
-  final String nama;
-  final String imagePath;
-  final int jumlahDesa;
-  final int jumlahTps;
-  final int banyakKk;
-  final int banyakLakiLaki;
-  final int banyakPerempuan;
-  final String lokasiUrl;
+class DptKecamatanScreen extends StatefulWidget {
+  const DptKecamatanScreen({super.key});
 
-  KecamatanDetail({
-    required this.nama,
-    required this.imagePath,
-    required this.jumlahDesa,
-    required this.jumlahTps,
-    required this.banyakKk,
-    required this.banyakLakiLaki,
-    required this.banyakPerempuan,
-    required this.lokasiUrl,
-  });
+  @override
+  State<DptKecamatanScreen> createState() => _DptKecamatanScreenState();
 }
 
-class DptKecamatanScreen extends StatelessWidget {
-  final List<KecamatanDetail> kecamatanDetails = [
-    KecamatanDetail(
+class _DptKecamatanScreenState extends State<DptKecamatanScreen> {
+  final List<Kecamatan> kecamatanDetails = [
+    Kecamatan(
       nama: 'Kecamatan Banjarwangi',
       imagePath: 'assets/images/banjarwangi.jpg',
       jumlahDesa: 5,
@@ -36,7 +22,7 @@ class DptKecamatanScreen extends StatelessWidget {
       lokasiUrl:
           'https://goo.gl/maps/5HPSd37dtzCcPxvH6', // Ganti dengan URL lokasi yang sesuai
     ),
-    KecamatanDetail(
+    Kecamatan(
       nama: 'Kecamatan 2',
       imagePath: 'assets/images/kecamatan2.jpg',
       jumlahDesa: 7,
@@ -52,7 +38,7 @@ class DptKecamatanScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('DPT Kecamatan'),
+        title: const Text('DPT Kecamatan'),
       ),
       body: ListView.builder(
         itemCount: kecamatanDetails.length,
@@ -60,7 +46,7 @@ class DptKecamatanScreen extends StatelessWidget {
           return ListTile(
             title: Text(
               kecamatanDetails[index].nama,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,27 +57,27 @@ class DptKecamatanScreen extends StatelessWidget {
                   height: 200, // Ketinggian foto
                   fit: BoxFit.cover,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text('Jumlah Desa: ${kecamatanDetails[index].jumlahDesa}'),
-                Divider(),
+                const Divider(),
                 Text('Jumlah TPS: ${kecamatanDetails[index].jumlahTps}'),
-                Divider(), // Pemisah antar teks
+                const Divider(), // Pemisah antar teks
                 Text('Banyak KK: ${kecamatanDetails[index].banyakKk}'),
-                Divider(),
+                const Divider(),
                 Text(
                     'Banyak Laki-Laki: ${kecamatanDetails[index].banyakLakiLaki}'),
-                Divider(),
+                const Divider(),
                 Text(
                     'Banyak Perempuan: ${kecamatanDetails[index].banyakPerempuan}'),
-                Divider(),
-                SizedBox(height: 10),
+                const Divider(),
+                const SizedBox(height: 10),
                 GestureDetector(
                   onTap: () {
                     // Navigasi ke link lokasi
                   },
                   child: Text(
                     'Lokasi: ${kecamatanDetails[index].lokasiUrl}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.blue,
                       decoration: TextDecoration.underline,
                     ),
@@ -108,7 +94,7 @@ class DptKecamatanScreen extends StatelessWidget {
     );
   }
 
-  void _navigateToDetail(BuildContext context, KecamatanDetail detail) {
+  void _navigateToDetail(BuildContext context, Kecamatan detail) {
     Navigator.push(
       context,
       MaterialPageRoute(
